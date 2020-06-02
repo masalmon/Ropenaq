@@ -30,24 +30,25 @@ URL: https://docs.ropensci.org/ropenaq,
 BugReports: http://github.com/ropensci/ropenaq/issues
 Imports:
     crul,
+    webmockr (>= 0.6.2.92),
     dplyr,
     jsonlite,
     lubridate,
     magrittr,
     rlang,
-    tidyr
+    tidyr,
+    vcr (>= 0.4.2.93)
 Suggests:
-    webmockr (>= 0.6.2),
     ggplot2,
     knitr,
     rmarkdown,
     rworldmap,
     testthat (>= 2.1.0),
-    vcr (>= 0.5.0),
     viridis
 Encoding: UTF-8
 LazyData: TRUE
 RoxygenNote: 7.0.2
 Roxygen: list(markdown = TRUE)
 Remotes:  
-    ropensci/webmockr
+    ropensci/webmockr,
+    ropensci/vcr

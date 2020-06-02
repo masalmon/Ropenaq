@@ -238,6 +238,7 @@ getResults_bypage <- function(urlAQ, argsList){
   argsList <- argsList[argsList != ""]
 
   onwait <- function(resp, wait_time) {
+    message("Checking status")
     status <- get_status()
 
     if (!status %in% c("green", "yellow", "unknown", "unavailable")) {
@@ -360,6 +361,7 @@ functionParameters <- function(resTable) {
 
 # dates abbreviation
 func_date_headers <- function(date){
+
   date <- strsplit(date, ",")[[1]][2]
   date <- gsub("Jan", "01", date)
   date <- gsub("Feb", "02", date)
