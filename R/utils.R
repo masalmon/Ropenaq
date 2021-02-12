@@ -205,7 +205,7 @@ replace_plus <- function(x){
 ############################################################
 
 status_url <- function() {
-  "https://api.openaq.org/status"
+  "https://api.openaq.org/ping"
 }
 
 get_status <- function(){
@@ -215,9 +215,7 @@ get_status <- function(){
   if (status$status_code >= 400) {
     return("red")
   } else {
-    status <- suppressMessages(status$parse(encoding = "UTF-8"))
-    status <- jsonlite::fromJSON(status)
-    return(status$results$healthStatus)
+    return(status$parse(encoding = "UTF-8"))
   }
 
   }
@@ -240,7 +238,7 @@ getResults_bypage <- function(urlAQ, argsList){
   onwait <- function(resp, wait_time) {
     status <- get_status()
 
-    if (!status %in% c("green", "yellow", "unknown", "unavailable")) {
+    if (!status %in% c("Healthy Connection", "green", "yellow", "unknown", "unavailable")) {
       stop("uh oh, the OpenAQ API seems to be having some issues, try again later")
     }
   }
@@ -274,8 +272,8 @@ getResults_bymorepages <- function(urlAQ, argsList){
   # find number of total pages
   argsList2 <- argsList
   argsList2$page <- 1
-  argsList2$limit <- 0
-  count <- getResults_bypage(urlAQ, argsList2)
+  argsList2$limit <- 1
+  count <- attr(getResults_bypage(urlAQ, argsList2), "meta")$found
   if(is.na(argsList$limit)){
     limit <- 10000
   }else{
