@@ -12,6 +12,10 @@
 #' @template radius
 #' @template limit
 #' @template page
+#' @template siteType
+#' @template activationDate
+#' @template completeness
+#' @template inletHeight
 
 #' @return  A results data.frame (dplyr "tbl_df") with 12 columns:
 #'  \itemize{
@@ -54,7 +58,9 @@
 aq_locations <- function(country = NULL, city = NULL, location = NULL,# nolint
                          parameter = NULL, has_geo = NULL, limit = 10000,
                          latitude = NULL, longitude = NULL, radius = NULL,
-                         page = NULL) {
+                         page = NULL, siteType = NULL, completeness_from = NULL,
+                         completeness_to = NULL, activation_date_from = NULL,
+                         activation_date_to = NULL, inletHeight_from = NULL, inletHeight_to = NULL){
 
   ####################################################
   # BUILD QUERY base URL
@@ -68,7 +74,16 @@ aq_locations <- function(country = NULL, city = NULL, location = NULL,# nolint
                          latitude = latitude,
                          longitude = longitude,
                          radius = radius,
-                         page = page)
+                         page = page,
+                         siteType = siteType,
+                         completeness_from = completeness_from,
+                         completeness_to = completeness_to,
+                         activation_date_from = activation_date_from,
+                         activation_date_to = activation_date_to,
+                         inletHeight_from = inletHeight_from,
+                         inletHeight_to = inletHeight_to)
+
+  return(argsList)
 
   ####################################################
   # GET AND TRANSFORM RESULTS

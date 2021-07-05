@@ -15,6 +15,7 @@ aq_locations(
   longitude = NULL,
   radius = NULL,
   page = NULL
+  siteType = NULL
 )
 }
 \arguments{
